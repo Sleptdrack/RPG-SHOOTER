@@ -13,6 +13,8 @@ public class LevelGenerator : MonoBehaviour
     public float WaitTime;
     public float ExtremeX;
     public float ExtremeY;
+    public float Wall_Porcentaje;//entre 0-1
+    public float Ptf_Porcentaje;//entre 0-1
     public float[] X = new float[2];
     public int Fixed = 0;
     public int[,] TileType = new int[(int)MapSize[0], (int)MapSize[1]];
@@ -163,7 +165,19 @@ public class LevelGenerator : MonoBehaviour
             {
                 if (!(createdTiles.Contains(new Vector3(x * tileSize, y * tileSize, 0))))
                 {
-                    TileType[x, y] = Random.Range(0, 3);
+                    int p = Random.Range(0, 100);
+                    if (p < 100 - Wall_Porcentaje - Ptf_Porcentaje)
+                    {
+                        TileType[x, y] = 0;
+                    }
+                    else if (p < 100 - Wall_Porcentaje)
+                    {
+                        TileType[x, y] = 1;
+                    }
+                    else
+                    {
+                        TileType[x, y] = 2;
+                    }
                     if (y > 0)
                     {
                         if (TileType[x, y] == 2 && TileType[x, y - 1] == 1)
