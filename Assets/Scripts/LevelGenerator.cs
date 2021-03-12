@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    public GameObject[] tiles;
-    public GameObject wall;
+    public GameObject[] wall;//0-1D-1U-1L-1B--2-UB-2RL-2RU-2LU-2LB-2RB-3R-3U-3L-3B-4
     public GameObject platform;
     public List<Vector3> createdTiles;
     static public float[] MapSize = { 30, 15 };
@@ -18,6 +17,7 @@ public class LevelGenerator : MonoBehaviour
     public float[] X = new float[2];
     public int Fixed = 0;
     public int[,] TileType = new int[(int)MapSize[0], (int)MapSize[1]];
+    public int[,] WallType = new int[(int)MapSize[0], (int)MapSize[1]];
     // Start is called before the first frame update
     void Start()
     {
@@ -39,11 +39,10 @@ public class LevelGenerator : MonoBehaviour
             }
             else
             {
-                int tile = Random.Range(0, tiles.Length);
                 int p = Random.Range(0, 3);
                 X[0] = transform.position.x / tileSize;
                 X[1] = transform.position.y / tileSize;
-                CreateTile(tile);
+                CreateTile();
                 MoveGenPath(p, Vft);
             }
             yield return new WaitForSeconds(WaitTime);
@@ -111,13 +110,11 @@ public class LevelGenerator : MonoBehaviour
             }
         }
     }
-    void CreateTile(int tileindex)
+    void CreateTile()
     {
         if (!(createdTiles.Contains(transform.position)))
         {
-            GameObject tileObject;
-            tileObject = Instantiate(tiles[tileindex], transform.position, transform.rotation) as GameObject;
-            createdTiles.Add(tileObject.transform.position);
+            createdTiles.Add(transform.position);
         }
     }
     void Finish()
@@ -131,7 +128,7 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int x = (int)(-ExtremeX / 2); x < (int)(ExtremeX / 2 + MapSize[0]); x++)
             {
-                Instantiate(wall, new Vector3(x * tileSize, y * tileSize, 0), transform.rotation);
+                Instantiate(wall[15], new Vector3(x * tileSize, y * tileSize, 0), transform.rotation);
             }
         }
         //Build Bot
@@ -139,7 +136,7 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int x = (int)(-ExtremeX / 2); x < (int)(ExtremeX / 2 + MapSize[0]); x++)
             {
-                Instantiate(wall, new Vector3(x * tileSize, y * tileSize, 0), transform.rotation);
+                Instantiate(wall[15], new Vector3(x * tileSize, y * tileSize, 0), transform.rotation);
             }
         }
         //Build Left
@@ -147,7 +144,7 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int y = 0; y < MapSize[1]; y++)
             {
-                Instantiate(wall, new Vector3(x * tileSize, y * tileSize, 0), transform.rotation);
+                Instantiate(wall[15], new Vector3(x * tileSize, y * tileSize, 0), transform.rotation);
             }
         }
         //Build Rigth
@@ -155,7 +152,7 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int y = 0; y < MapSize[1]; y++)
             {
-                Instantiate(wall, new Vector3(x * tileSize, y * tileSize, 0), transform.rotation);
+                Instantiate(wall[15], new Vector3(x * tileSize, y * tileSize, 0), transform.rotation);
             }
         }
         //Set tile class
@@ -177,6 +174,74 @@ public class LevelGenerator : MonoBehaviour
                     else
                     {
                         TileType[x, y] = 2;
+                        if(y<MapSize[1]-1 && y > 0 && x>0 && x< MapSize[0] - 1)
+                        {
+                            if (TileType[x - 1, y] != 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] != 2)
+                            {
+                                WallType[x, y] = 15;//Todo Moho
+                            }
+                            else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] != 2)
+                            {
+                                WallType[x, y] = 14;//todo moho menos arriba 3U
+                            }
+                            else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] != 2)
+                            {
+                                WallType[x, y] = 13;//todo moho menos izq 3L
+                            }
+                            else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] == 2)
+                            {
+                                WallType[x, y] = 12;//todo moho menos 3B
+                            }
+                            else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] != 2)
+                            {
+                                WallType[x, y] = 11;//3R
+                            }
+                            else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] != 2)
+                            {
+                                WallType[x, y] = 10;//2BR
+                            }
+                            else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] != 2)
+                            {
+                                WallType[x, y] = 9;//2BL
+                            }
+                            else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] == 2)
+                            {
+                                WallType[x, y] = 8;//2UL
+                            }
+                            else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] == 2)
+                            {
+                                WallType[x, y] = 7;//2UR
+                            }
+                            else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] == 2)
+                            {
+                                WallType[x, y] = 6;//2RL
+                            }
+                            else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] != 2)
+                            {
+                                WallType[x, y] = 5;//2UB
+                            }
+                            else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] != 2)
+                            {
+                                WallType[x, y] = 4;//1B
+                            }
+                            else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] == 2)
+                            {
+                                WallType[x, y] = 3;//1L
+                            }
+                            else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] == 2)
+                            {
+                                WallType[x, y] = 2;//1U
+                            }
+                            else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] == 2)
+                            {
+                                WallType[x, y] = 1;//1R
+                            }
+                            else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] == 2)
+                            {
+                                WallType[x, y] = 0;//0
+                            }
+                        }
+                        
                     }
                     if (y > 0)
                     {
@@ -194,6 +259,7 @@ public class LevelGenerator : MonoBehaviour
             }
         }
         //Build tile
+
         for (int y = 0; y < MapSize[1]; y++)
         {
             for (int x = 0; x < MapSize[0]; x++)
@@ -202,15 +268,11 @@ public class LevelGenerator : MonoBehaviour
                 {
                     switch (TileType[x, y])
                     {
-                        case 0:
-                            int t = Random.Range(0, tiles.Length);
-                            Instantiate(tiles[t], new Vector3(x * tileSize, y * tileSize, 0), transform.rotation);
-                            break;
                         case 1:
                             Instantiate(platform, new Vector3(x * tileSize, y * tileSize, 0), transform.rotation);
                             break;
                         case 2:
-                            Instantiate(wall, new Vector3(x * tileSize, y * tileSize, 0), transform.rotation);
+                            Instantiate(wall[WallType[x,y]], new Vector3(x * tileSize, y * tileSize, 0), transform.rotation);
                             break;
                     }
                 }
