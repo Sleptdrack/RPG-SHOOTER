@@ -173,75 +173,7 @@ public class LevelGenerator : MonoBehaviour
                     }
                     else
                     {
-                        TileType[x, y] = 2;
-                        if(y<MapSize[1]-1 && y > 0 && x>0 && x< MapSize[0] - 1)
-                        {
-                            if (TileType[x - 1, y] != 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] != 2)
-                            {
-                                WallType[x, y] = 15;//Todo Moho
-                            }
-                            else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] != 2)
-                            {
-                                WallType[x, y] = 14;//todo moho menos arriba 3U
-                            }
-                            else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] != 2)
-                            {
-                                WallType[x, y] = 13;//todo moho menos izq 3L
-                            }
-                            else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] == 2)
-                            {
-                                WallType[x, y] = 12;//todo moho menos 3B
-                            }
-                            else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] != 2)
-                            {
-                                WallType[x, y] = 11;//3R
-                            }
-                            else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] != 2)
-                            {
-                                WallType[x, y] = 10;//2BR
-                            }
-                            else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] != 2)
-                            {
-                                WallType[x, y] = 9;//2BL
-                            }
-                            else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] == 2)
-                            {
-                                WallType[x, y] = 8;//2UL
-                            }
-                            else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] == 2)
-                            {
-                                WallType[x, y] = 7;//2UR
-                            }
-                            else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] == 2)
-                            {
-                                WallType[x, y] = 6;//2RL
-                            }
-                            else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] != 2)
-                            {
-                                WallType[x, y] = 5;//2UB
-                            }
-                            else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] != 2)
-                            {
-                                WallType[x, y] = 4;//1B
-                            }
-                            else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] == 2)
-                            {
-                                WallType[x, y] = 3;//1L
-                            }
-                            else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] == 2)
-                            {
-                                WallType[x, y] = 2;//1U
-                            }
-                            else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] == 2)
-                            {
-                                WallType[x, y] = 1;//1R
-                            }
-                            else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] == 2)
-                            {
-                                WallType[x, y] = 0;//0
-                            }
-                        }
-                        
+                        TileType[x, y] = 2;                        
                     }
                     if (y > 0)
                     {
@@ -256,6 +188,98 @@ public class LevelGenerator : MonoBehaviour
                     TileType[x, y] = 0;
                 }
 
+            }
+        }
+        //Assign sprite to tile
+        for(int y = 0; y < MapSize[1]; y++)
+        {
+            for(int x = 0; x < MapSize[0]; x++)
+            {
+                //0-1R-1U-1L-1B--2UB-2RL-2RU-2LU-2LB-2RB-3R-3B-3L-3U-4
+                //0-1--2--3--4---5---6---7---8---9---10--11-12-13-14-15
+                if (y < MapSize[1] - 1 && y > 0 && x > 0 && x < MapSize[0] - 1 && TileType[x,y]==2)
+                {
+                    //Todo Moho*
+                    if (TileType[x - 1, y] != 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] != 2)
+                    {
+                        WallType[x, y] = 15;
+                    }
+                    //todo moho menos arriba 3U*
+                    else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] == 2)
+                    {
+                        WallType[x, y] = 14;
+                    }
+                    //todo moho menos izq 3L*
+                    else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] != 2)
+                    {
+                        WallType[x, y] = 13;
+                    }
+                    //todo moho menos 3B*
+                    else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] != 2)
+                    {
+                        WallType[x, y] = 12;
+                    }
+                    //3R*
+                    else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] != 2)
+                    {
+                        WallType[x, y] = 11;
+                    }
+                    //2BR*
+                    else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] == 2)
+                    {
+                        WallType[x, y] = 10;
+                    }
+                    //2BL*
+                    else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] == 2)
+                    {
+                        WallType[x, y] = 9;
+                    }
+                    //2UL*
+                    else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] != 2)
+                    {
+                        WallType[x, y] = 8;
+                    }
+                    //2UR*
+                    else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] != 2)
+                    {
+                        WallType[x, y] = 7;
+                    }
+                    //2RL*
+                    else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] == 2)
+                    {
+                        WallType[x, y] = 6;
+                    }
+                    //2UB*
+                    else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] != 2)
+                    {
+                        WallType[x, y] = 5;
+                    }
+                    //1B*
+                    else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] != 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] == 2)
+                    {
+                        WallType[x, y] = 4;
+                    }
+                    //1L*
+                    else if (TileType[x - 1, y] != 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] == 2)
+                    {
+                        WallType[x, y] = 3;
+                    }
+                    //1U*
+                    else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] != 2)
+                    {
+                        WallType[x, y] = 2;
+                    }
+                    //1R*
+                    else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] != 2 && TileType[x, y + 1] == 2)
+                    {
+                        WallType[x, y] = 1;
+                    }
+                    //0*
+                    else if (TileType[x - 1, y] == 2 && TileType[x, y - 1] == 2 && TileType[x + 1, y] == 2 && TileType[x, y + 1] == 2)
+                    {
+                        WallType[x, y] = 0;
+                    }
+                }
             }
         }
         //Build tile
