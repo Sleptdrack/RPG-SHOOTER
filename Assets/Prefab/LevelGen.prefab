@@ -43,18 +43,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e6f201f4afd0040b7facdc5b4adf22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiles:
-  - {fileID: 2043375767985979670, guid: fde0bb8bab909e4478ddd874798e2de2, type: 3}
-  - {fileID: 4754043138917753237, guid: 6e826c47c1fbdda45995e8cb10fdca09, type: 3}
-  - {fileID: 5987796468255349196, guid: d0bfa44250ccd99478337d4d69fb857e, type: 3}
-  wall: {fileID: 4418196760018869247, guid: 4aaf247015536af4ab91e2469fb7ba6a, type: 3}
-  platform: {fileID: 7954208997520186130, guid: c308917d005a83f4988047a11024561e,
-    type: 3}
+  wall:
+  - {fileID: 3255408446324993423, guid: 79fb7effb82b6034c87f94d63371c688, type: 3}
+  - {fileID: 3446758172539832724, guid: b90a463cef0ed1f48b7b597462f85745, type: 3}
+  - {fileID: 5547145012214437101, guid: 20ac9931615963844a68907130c07ba5, type: 3}
+  - {fileID: 5013190622641324649, guid: c1e1b31c84c5932479b21ea9a3b41c02, type: 3}
+  - {fileID: 1960824380428176883, guid: 8d8f77622aa568742a47f83317ac2000, type: 3}
+  - {fileID: 8603835246266846389, guid: eaa994c00778935418983421e0c11ba4, type: 3}
+  - {fileID: 176806168599844038, guid: f6bc4c5e387cb7b439bb0b569e4259cc, type: 3}
+  - {fileID: 5309796502910486729, guid: 90f0f4b957ab54d44958ee122bee65fc, type: 3}
+  - {fileID: 3959667686401464466, guid: 767b7030a99f52b4ba4488637f9ee774, type: 3}
+  - {fileID: 5875549247538427670, guid: 4e59e7e092c3f714c858e0445f9a5c7a, type: 3}
+  - {fileID: 2575289823267554232, guid: 4ab0e7ecc16a5744292ae7b065a3bf04, type: 3}
+  - {fileID: 6374347626248773994, guid: 8ce0e611eb541d7469ed061e1b81f7a3, type: 3}
+  - {fileID: 9150199583947294643, guid: a3f381a07d95ee846b17d4de21cce16a, type: 3}
+  - {fileID: 281201769221784068, guid: 65e64eb8061222444aeee70431d6ee71, type: 3}
+  - {fileID: 2934997360791498615, guid: 95c073d0e91a46a4a92b3d84ae38bf54, type: 3}
+  - {fileID: 7200619785814202838, guid: 6bcbc6c51de49f042be372a3739cd6a8, type: 3}
+  platform:
+  - {fileID: 5268180810268878754, guid: 9cd7dfc66bf64c04b9a973c93138de85, type: 3}
+  - {fileID: 6900817682341467594, guid: 1dd500e6bc0c19f44b8b43267761ece0, type: 3}
   createdTiles: []
-  tileSize: 16
+  tileSize: 14
   WaitTime: 0
-  ExtremeX: 5
-  ExtremeY: 5
+  ExtremeX: 2
+  ExtremeY: 2
+  Wall_Porcentaje: 25
+  Ptf_Porcentaje: 25
   X:
   - 0
   - 0

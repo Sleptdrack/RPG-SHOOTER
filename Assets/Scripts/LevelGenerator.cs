@@ -29,6 +29,7 @@ public class LevelGenerator : MonoBehaviour
         X[0] = 0;
         X[1] = 0;
         int Vft = 0;
+        CreateLimits();
         while ((X[0] != MapSize[0] && X[1] != MapSize[1]) || flag)
         {
             if (X[0] == MapSize[0] && X[1] == 0)
@@ -45,7 +46,7 @@ public class LevelGenerator : MonoBehaviour
                 CreateTile();
                 MoveGenPath(p, Vft);
             }
-            yield return new WaitForSeconds(WaitTime);
+            //yield return new WaitForSeconds(WaitTime);
         }
         yield return 0;
     }
@@ -117,11 +118,7 @@ public class LevelGenerator : MonoBehaviour
             createdTiles.Add(transform.position);
         }
     }
-    void Finish()
-    {
-        CreateWall();
-    }
-    void CreateWall()
+    void CreateLimits()
     {
         //Build Top
         for (int y = (int)MapSize[1]; y < (int)(MapSize[1] + ExtremeY / 2); y++)
@@ -155,6 +152,13 @@ public class LevelGenerator : MonoBehaviour
                 Instantiate(wall[15], new Vector3(x * tileSize, y * tileSize, 0), transform.rotation);
             }
         }
+    }
+    void Finish()
+    {
+        CreateWall();
+    }
+    void CreateWall()
+    {
         //Set tile class
         for (int y = 0; y < MapSize[1]; y++)
         {
