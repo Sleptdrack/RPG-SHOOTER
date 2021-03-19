@@ -1,0 +1,31 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Move2D : MonoBehaviour
+{
+    public float Speed = 5f;
+    public float JumpForce = 10f;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Jump();
+        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+        transform.position += movement * Time.deltaTime * Speed;
+        
+    }
+    void Jump()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
+        }
+        
+    }
+}
