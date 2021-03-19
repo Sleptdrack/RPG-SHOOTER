@@ -497,7 +497,33 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1528394598}
   m_PrefabAsset: {fileID: 0}
---- !u!50 &1609699380
+--- !u!61 &1609699380
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609699377}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -3.6283839, y: -2.2800837}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.933021, y: 8.704809}
+  m_EdgeRadius: 0
+--- !u!50 &1609699381
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -518,32 +544,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &1609699381
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609699377}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -3.6202679, y: -2.2867746}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 5.97748, y: 8.7413025}
-  m_EdgeRadius: 0
 --- !u!4 &1609699382 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7627810711988870570, guid: 11a286b7ac624614ba20c59c8bc4ef65,
@@ -710,7 +710,7 @@ PrefabInstance:
         type: 3}
       propertyPath: platform
       value: 
-      objectReference: {fileID: 6796912123411494620, guid: 46e69ff1005b35649882f7c00cd81cd3,
+      objectReference: {fileID: 962941656415330014, guid: d6f2b603763a91149a050cdab7d0bc76,
         type: 3}
     - target: {fileID: 5586479455336255032, guid: d5552cce29f538d4e91c11a534440542,
         type: 3}

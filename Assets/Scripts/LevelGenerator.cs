@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     public GameObject[] wall;//0-1D-1U-1L-1B--2-UB-2RL-2RU-2LU-2LB-2RB-3R-3U-3L-3B-4
-    public GameObject platform;
+    public GameObject[] platform;
     public List<Vector3> createdTiles;
     static public float[] MapSize = { 30, 15 };
     public int tileSize;
@@ -293,7 +293,7 @@ public class LevelGenerator : MonoBehaviour
                     switch (TileType[x, y])
                     {
                         case 1:
-                            Instantiate(platform, new Vector3(x * tileSize, y * tileSize, 0), transform.rotation);
+                            Instantiate(platform[Random.Range(0,platform.Length)], new Vector3(x * tileSize, y * tileSize, 0), transform.rotation);
                             break;
                         case 2:
                             Instantiate(wall[WallType[x,y]], new Vector3(x * tileSize, y * tileSize, 0), transform.rotation);
