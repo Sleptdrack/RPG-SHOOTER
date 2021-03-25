@@ -64,11 +64,11 @@ MonoBehaviour:
   - {fileID: 5268180810268878754, guid: 9cd7dfc66bf64c04b9a973c93138de85, type: 3}
   - {fileID: 6900817682341467594, guid: 1dd500e6bc0c19f44b8b43267761ece0, type: 3}
   createdTiles: []
-  tileSize: 14
+  tileSize: 7
   WaitTime: 0
   ExtremeX: 2
   ExtremeY: 2
-  Wall_Porcentaje: 25
+  Wall_Porcentaje: 30
   Ptf_Porcentaje: 25
   X:
   - 0
